@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+                <p id="admin-username">Welcome, Admin</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+                <a href="#projects" class="nav-item" data-section="projects">
+                    <i class="fas fa-project-diagram"></i>
+                    Projects
+                </a>
+                <a href="#blogs" class="nav-item" data-section="blogs">
+                    <i class="fas fa-blog"></i>
+                    Blog Posts
+                </a>
+                <a href="#contacts" class="nav-item" data-section="contacts">
+                    <i class="fas fa-envelope"></i>
+                    Messages
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    View Site
+                </a>
+                <a href="#" class="nav-item" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Dashboard Section -->
+            <div id="dashboard-section" class="admin-section active">
+                <div class="section-header">
+                    <h2>Dashboard</h2>
+                    <p>Overview of your portfolio</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="projects-count">0</h3>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-blog"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="blogs-count">0</h3>
+                            <p>Blog Posts</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="contacts-count">0</h3>
+                            <p>Messages</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>1,234</h3>
+                            <p>Total Views</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+           
+            <!-- Blogs Section -->
+            <div id="blogs-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Blog Posts Management</h2>
+                    <button class="btn btn-primary" id="add-blog-btn">
+                        <i class="fas fa-plus"></i> Add Blog Post
+                    </button>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="blogs-table-body">
+                            <!-- Blog posts will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Contacts Section -->
+            <div id="contacts-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Contact Messages</h2>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contacts-table-body">
+                            <!-- Contact messages will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Project Form -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="project-modal-title">Add Project</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="project-form" class="modal-form">
+                <div class="form-group">
+                    <label for="project-title">Title</label>
+                    <input type="text" id="project-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="project-technologies">Technologies (comma separated)</label>
+                    <input type="text" id="project-technologies" name="technologies" placeholder="React, Node.js, MongoDB" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="project-github">GitHub URL</label>
+                        <input type="url" id="project-github" name="githubUrl">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-live">Live URL</label>
+                        <input type="url" id="project-live" name="liveUrl">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="project-image">Image URL</label>
+                    <input type="url" id="project-image" name="imageUrl">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="project-featured" name="featured">
+                        Featured Project
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-project">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Blog Form -->
+    <div id="blog-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="blog-modal-title">Add Blog Post</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="blog-form" class="modal-form">
+                <div class="form-group">
+                    <label for="blog-title">Title</label>
+                    <input type="text" id="blog-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="blog-excerpt">Excerpt</label>
+                    <textarea id="blog-excerpt" name="excerpt" rows="2" placeholder="Brief description of the blog post" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="blog-content">Content</label>
+                    <textarea id="blog-content" name="content" rows="10" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="blog-author">Author</label>
+                        <input type="text" id="blog-author" name="author" value="Admin">
+                    </div>
+                    <div class="form-group">
+                        <label for="blog-tags">Tags (comma separated)</label>
+                        <input type="text" id="blog-tags" name="tags" placeholder="JavaScript, React, Node.js">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="blog-image">Image URL</label>
+                    <input type="url" id="blog-image" name="imageUrl">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="blog-published" name="published" checked>
+                        Published
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-blog">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Blog Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Reply Form -->
+    <div id="reply-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="reply-modal-title">Reply to Message</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="reply-form" class="modal-form">
+                <div class="form-group">
+                    <label for="reply-to">To</label>
+                    <input type="email" id="reply-to" name="to" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="reply-subject">Subject</label>
+                    <input type="text" id="reply-subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label>Original Message</label>
+                    <div id="original-message" style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border: 1px solid #dee2e6; margin-bottom: 1rem; font-style: italic;">
+                        <!-- Original message will be populated here -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reply-message">Your Reply</label>
+                    <textarea id="reply-message" name="message" rows="6" required placeholder="Type your reply here..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-reply">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Send Reply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- <button onclick="alert('Hi')">Click Me</button> -->
+    <script src="./dashboard.js"></script>
+
+</body>
+</html>

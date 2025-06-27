@@ -1,0 +1,18 @@
+ // ✅ Auto-reply to user
+    const userReplyOptions = {
+      from: process.env.GMAIL_USER,
+      to: email,
+      subject: 'Thank you for contacting us!',
+      html: `
+        <p>Dear ${name},</p>
+        <p>Thank you for reaching out! I’ve received your message and will get back to you shortly.</p>
+        <hr>
+        <p><strong>Your Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        <br>
+        <p>Best regards,<br>Ehtsham (Portfolio Admin)</p>
+      `,
+    };
+
+    await transporter.sendMail(userReplyOptions);
+    console.log('✅ Auto-reply sent to user');
